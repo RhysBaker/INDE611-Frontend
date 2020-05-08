@@ -20,7 +20,9 @@ export class home extends Component {
   }
   render() {
     let recentSketchesMarkUp = this.state.sketches ? (
-      this.state.sketches.map((sketch) => <Sketch sketch={sketch} />)
+      this.state.sketches.map((sketch) => (
+        <Sketch key={sketch.sketchId} sketch={sketch} />
+      ))
     ) : (
       <p>Loading...</p>
     );
