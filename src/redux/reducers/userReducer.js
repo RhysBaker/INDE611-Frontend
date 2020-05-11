@@ -1,11 +1,4 @@
-import {
-  SET_USER,
-  SET_ERRORS,
-  CLR_ERRORS,
-  LOADING_UI,
-  SET_AUTH,
-  SET_UNAUTH,
-} from "../types";
+import { SET_USER, SET_AUTH, SET_UNAUTH } from "../types";
 
 const initialState = {
   authenticated: false,
