@@ -3,6 +3,7 @@ import {
   LOADING_DATA,
   LIKE_SKETCH,
   UNLIKE_SKETCH,
+  DELETE_SKETCH,
 } from "../types";
 import axios from "axios";
 
@@ -40,6 +41,15 @@ export const unlikeSketch = (sketchId) => (dispatch) => {
         type: UNLIKE_SKETCH,
         payload: res.data,
       });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const deleteSketch = (sketchId) => (dispatch) => {
+  axios
+    .delete(`/sketch/${sketchId}`)
+    .then(() => {
+      dispatch({ type: DELETE_SKETCH, payload: sketchId });
     })
     .catch((err) => console.log(err));
 };

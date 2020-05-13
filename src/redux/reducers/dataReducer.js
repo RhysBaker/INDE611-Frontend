@@ -3,6 +3,7 @@ import {
   LOADING_DATA,
   LIKE_SKETCH,
   UNLIKE_SKETCH,
+  DELETE_SKETCH,
 } from "../types";
 
 const initialState = {
@@ -33,6 +34,17 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
+    case DELETE_SKETCH: {
+      let index = state.sketches.findIndex(
+        (sketch) => sketch.sketchId === action.payload
+      );
+      let mutatedSketches = state.sketches.slice();
+      mutatedSketches.splice(index, 1);
+      return {
+        ...state,
+        sketches: [...mutatedSketches],
+      };
+    }
     default:
       return state;
   }
