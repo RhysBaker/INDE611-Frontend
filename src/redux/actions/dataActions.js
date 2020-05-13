@@ -1,9 +1,13 @@
 import {
   SET_SKETCHES,
   LOADING_DATA,
+  LOADING_UI,
   LIKE_SKETCH,
   UNLIKE_SKETCH,
   DELETE_SKETCH,
+  SET_ERRORS,
+  CLR_ERRORS,
+  POST_SKETCH,
 } from "../types";
 import axios from "axios";
 
@@ -17,6 +21,28 @@ export const getSketches = () => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: SET_SKETCHES, payload: [] });
+    });
+};
+
+//post sketch
+export const postSketch = (newSketch) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post("/sketch", newSketch)
+    .then((res) => {
+      dispatch({
+        type: POST_SKETCH,
+        payload: res.data,
+      });
+      dispatch({
+        type: CLR_ERRORS,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
     });
 };
 

@@ -16,3 +16,4 @@ export const SET_SKETCH = "SET_SKETCH";
 export const LIKE_SKETCH = "LIKE_SKETCH";
 export const UNLIKE_SKETCH = "UNLIKE_SKETCH";
 export const DELETE_SKETCH = "DELETE_SKETCH";
+export const POST_SKETCH = "POST_SKETCH";

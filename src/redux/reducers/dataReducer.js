@@ -4,6 +4,7 @@ import {
   LIKE_SKETCH,
   UNLIKE_SKETCH,
   DELETE_SKETCH,
+  POST_SKETCH,
 } from "../types";
 
 const initialState = {
@@ -43,6 +44,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         sketches: [...mutatedSketches],
+      };
+    }
+    case POST_SKETCH: {
+      return {
+        ...state,
+        sketches: [action.payload, ...state.sketches],
       };
     }
     default:
