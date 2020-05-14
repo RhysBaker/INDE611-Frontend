@@ -8,6 +8,8 @@ import {
   SET_ERRORS,
   CLR_ERRORS,
   POST_SKETCH,
+  SET_SKETCH,
+  STOP_LOADING_UI,
 } from "../types";
 import axios from "axios";
 
@@ -22,6 +24,20 @@ export const getSketches = () => (dispatch) => {
     .catch((err) => {
       dispatch({ type: SET_SKETCHES, payload: [] });
     });
+};
+
+export const getSketch = (sketchId) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/sketch/${sketchId}`)
+    .then((res) => {
+      dispatch({
+        type: SET_SKETCH,
+        payload: res.data,
+      });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => console.log(err));
 };
 
 //post sketch
@@ -78,4 +94,8 @@ export const deleteSketch = (sketchId) => (dispatch) => {
       dispatch({ type: DELETE_SKETCH, payload: sketchId });
     })
     .catch((err) => console.log(err));
+};
+
+export const clearErrors = () => (dispatch) => {
+  dispatch({ type: CLR_ERRORS });
 };

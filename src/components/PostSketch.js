@@ -15,12 +15,14 @@ import CloseIcon from "@material-ui/icons/Close";
 
 //redux
 import { connect } from "react-redux";
-import { postSketch } from "../redux/actions/dataActions";
+import { postSketch, clearErrors } from "../redux/actions/dataActions";
 
 const styles = (theme) => ({
   ...theme.spreadThis,
   submitButton: {
     position: "relative",
+    float: "right",
+    margin: "10px 0px 10px 0px",
   },
   progressSpinner: {
     position: "absolute",
@@ -28,8 +30,8 @@ const styles = (theme) => ({
   closeButton: {
     position: "absolute",
     right: "0",
-    marginRight: "20px",
-    top: "10%",
+    marginRight: "10px",
+    top: "4%",
   },
 });
 
@@ -47,8 +49,7 @@ class PostSketch extends Component {
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: "" });
-      this.handleClose();
+      this.setState({ body: "", open: false, errors: {} });
     }
   }
 
@@ -59,6 +60,7 @@ class PostSketch extends Component {
   };
 
   handleClose = () => {
+    this.props.clearErrors();
     this.setState({
       open: false,
       errors: {},
@@ -95,7 +97,7 @@ class PostSketch extends Component {
           <MyButton
             tip="Close"
             onClick={this.handleClose}
-            btnClassName={classes.closeButton}
+            tipClassName={classes.closeButton}
           >
             <CloseIcon />
           </MyButton>
@@ -140,6 +142,7 @@ class PostSketch extends Component {
 
 PostSketch.propTypes = {
   postSketch: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired,
 };
 
@@ -147,6 +150,6 @@ const mapStateToProps = (state) => ({
   UI: state.UI,
 });
 
-export default connect(mapStateToProps, { postSketch })(
+export default connect(mapStateToProps, { postSketch, clearErrors })(
   withStyles(styles)(PostSketch)
 );

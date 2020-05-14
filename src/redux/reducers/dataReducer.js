@@ -1,5 +1,6 @@
 import {
   SET_SKETCHES,
+  SET_SKETCH,
   LOADING_DATA,
   LIKE_SKETCH,
   UNLIKE_SKETCH,
@@ -25,6 +26,11 @@ export default function (state = initialState, action) {
         ...state,
         sketches: action.payload,
         loading: false,
+      };
+    case SET_SKETCH:
+      return {
+        ...state,
+        sketch: action.payload,
       };
     case LIKE_SKETCH:
     case UNLIKE_SKETCH:
