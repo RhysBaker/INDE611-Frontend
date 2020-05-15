@@ -114,6 +114,21 @@ export const deleteSketch = (sketchId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getUserData = (userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/user/${userHandle}`)
+    .then((res) => {
+      dispatch({
+        type: SET_SKETCHES,
+        payload: res.data.sketches,
+      });
+    })
+    .catch(() => {
+      dispatch({ type: SET_SKETCHES, payload: null });
+    });
+};
+
 //error clearing func
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLR_ERRORS });
