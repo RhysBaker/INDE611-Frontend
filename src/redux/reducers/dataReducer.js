@@ -38,6 +38,9 @@ export default function (state = initialState, action) {
         (sketch) => sketch.sketchId === action.payload.sketchId
       );
       state.sketches[index] = action.payload;
+      if (state.sketch.sketchId === action.payload.sketchId) {
+        state.sketch = action.payload;
+      }
       return {
         ...state,
       };
