@@ -40,7 +40,9 @@ export default function (state = initialState, action) {
       );
       state.sketches[index] = action.payload;
       if (state.sketch.sketchId === action.payload.sketchId) {
+        let tmp = state.sketch.comments;
         state.sketch = action.payload;
+        state.sketch.comments = tmp;
       }
       return {
         ...state,

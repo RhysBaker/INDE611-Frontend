@@ -27,6 +27,7 @@ export const getSketches = () => (dispatch) => {
     });
 };
 
+//get one sketch
 export const getSketch = (sketchId) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
@@ -73,6 +74,7 @@ export const likeSketch = (sketchId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
 // unlike sketch
 export const unlikeSketch = (sketchId) => (dispatch) => {
   axios
@@ -102,6 +104,7 @@ export const submitComment = (sketchId, commentData) => (dispatch) => {
     });
 };
 
+//delete a sketch
 export const deleteSketch = (sketchId) => (dispatch) => {
   axios
     .delete(`/sketch/${sketchId}`)
@@ -111,6 +114,7 @@ export const deleteSketch = (sketchId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+//error clearing func
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLR_ERRORS });
 };

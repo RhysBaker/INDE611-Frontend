@@ -24,7 +24,6 @@ import { getSketch, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = (theme) => ({
   ...theme.spreadThis,
-
   profileImage: {
     maxWidth: 200,
     height: 200,
