@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import LikeButton from "./LikeButton";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 //MUI
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -19,7 +20,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 
 //redux
 import { connect } from "react-redux";
-import { getSketch } from "../../redux/actions/dataActions";
+import { getSketch, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = (theme) => ({
   ...theme.spreadThis,
@@ -66,6 +67,7 @@ class SketchDialog extends Component {
     this.setState({
       open: false,
     });
+    this.props.clearErrors();
   };
 
   render() {
@@ -117,6 +119,7 @@ class SketchDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visableSeperator} />
+        <CommentForm sketchId={sketchId} />
         <Comments comments={comments} />
       </Grid>
     );
@@ -154,6 +157,7 @@ class SketchDialog extends Component {
 }
 
 SketchDialog.propTypes = {
+  clearErrors: PropTypes.func.isRequired,
   getSketch: PropTypes.func.isRequired,
   sketchId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
@@ -168,6 +172,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
   getSketch,
+  clearErrors,
 };
 
 export default connect(

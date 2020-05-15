@@ -10,6 +10,7 @@ import {
   POST_SKETCH,
   SET_SKETCH,
   STOP_LOADING_UI,
+  SUBMIT_COMMENT,
 } from "../types";
 import axios from "axios";
 
@@ -50,9 +51,7 @@ export const postSketch = (newSketch) => (dispatch) => {
         type: POST_SKETCH,
         payload: res.data,
       });
-      dispatch({
-        type: CLR_ERRORS,
-      });
+      dispatch(clearErrors());
     })
     .catch((err) => {
       dispatch({
@@ -85,6 +84,22 @@ export const unlikeSketch = (sketchId) => (dispatch) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+//submit a comment
+export const submitComment = (sketchId, commentData) => (dispatch) => {
+  axios
+    .post(`/sketch/${sketchId}/comment`, commentData)
+    .then((res) => {
+      dispatch({ type: SUBMIT_COMMENT, payload: res.data });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data,
+      });
+    });
 };
 
 export const deleteSketch = (sketchId) => (dispatch) => {

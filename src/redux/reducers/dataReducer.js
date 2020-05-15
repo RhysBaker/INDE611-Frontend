@@ -6,6 +6,7 @@ import {
   UNLIKE_SKETCH,
   DELETE_SKETCH,
   POST_SKETCH,
+  SUBMIT_COMMENT,
 } from "../types";
 
 const initialState = {
@@ -59,6 +60,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         sketches: [action.payload, ...state.sketches],
+      };
+    }
+    case SUBMIT_COMMENT: {
+      return {
+        ...state,
+        sketch: {
+          ...state.sketch,
+          comments: [action.payload, ...state.sketch.comments],
+        },
       };
     }
     default:
