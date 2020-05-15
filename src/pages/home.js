@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
 import PropTypes from "prop-types";
 
-import Sketch from "../components/Sketch.js";
-import Profile from "../components/Profile.js";
+import Sketch from "../components/sketch/Sketch.js";
+import Profile from "../components/profile/Profile.js";
 
 import { connect } from "react-redux";
 import { getSketches } from "../redux/actions/dataActions";
