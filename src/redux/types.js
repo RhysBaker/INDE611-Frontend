@@ -3,6 +3,7 @@ export const SET_AUTH = "SET_AUTH";
 export const SET_UNAUTH = "SET_UNAUTH";
 export const SET_USER = "SET_USER";
 export const LOADING_USER = "LOADING_USER";
+export const MARK_NOTIF_READ = "MARK_NOTIF_READ";
 
 //ui reducer types
 export const SET_ERRORS = "SET_ERRORS";

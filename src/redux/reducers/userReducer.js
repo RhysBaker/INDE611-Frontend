@@ -5,6 +5,7 @@ import {
   LOADING_USER,
   LIKE_SKETCH,
   UNLIKE_SKETCH,
+  MARK_NOTIF_READ,
 } from "../types";
 
 const initialState = {
@@ -53,6 +54,12 @@ export default function (state = initialState, action) {
           (like) => like.sketchId !== action.payload.sketchId
         ),
       };
+    case MARK_NOTIF_READ: {
+      state.notifications.forEach((notif) => (notif.read = true));
+      return {
+        ...state,
+      };
+    }
     default:
       return state;
   }
