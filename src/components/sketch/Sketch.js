@@ -87,7 +87,11 @@ class Sketch extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
-          <SketchDialog sketchId={sketchId} userHandle={userHandle} />
+          <SketchDialog
+            sketchId={sketchId}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+          />
         </CardContent>
       </Card>
     );
@@ -98,6 +102,7 @@ Sketch.propTypes = {
   user: PropTypes.object.isRequired,
   sketch: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

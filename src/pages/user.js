@@ -13,9 +13,15 @@ import { getUserData } from "../redux/actions/dataActions";
 class user extends Component {
   state = {
     profile: null,
+    sketchIdParam: null,
   };
+
   componentDidMount() {
     const handle = this.props.match.params.handle;
+    const sketchId = this.props.match.params.sketchId;
+
+    if (sketchId) this.setState({ sketchIdParam: sketchId });
+
     this.props.getUserData(handle);
     axios
       .get(`/user/${handle}`)
@@ -28,14 +34,22 @@ class user extends Component {
   }
   render() {
     const { sketches, loading } = this.props.data;
+    const { sketchIdParam } = this.state;
 
     const sketchesMarkUp = loading ? (
       <p>Loading Data...</p>
     ) : sketches === null ? (
       <p>No Sketches from this user</p>
-    ) : (
+    ) : !sketchIdParam ? (
       sketches.map((sketch) => <Sketch key={sketch.sketchId} sketch={sketch} />)
+    ) : (
+      sketches.map((sketch) => {
+        if (sketch.sketchId !== sketchIdParam)
+          return <Sketch key={sketch.sketchId} sketch={sketch} />;
+        else return <Sketch key={sketch.sketchId} sketch={sketch} openDialog />;
+      })
     );
+
     return (
       <Grid container spacing={2}>
         <Grid item sm={8} xs={12}>
