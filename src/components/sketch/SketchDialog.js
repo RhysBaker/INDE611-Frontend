@@ -55,10 +55,19 @@ class SketchDialog extends Component {
     open: false,
     oldPath: "",
     newPath: "",
+    getSketchData: false,
   };
 
   componentDidMount() {
-    if (this.props.openDialog) {
+    if (this.props.openDialog && !this.state.getSketchData) {
+      this.setState({ getSketchData: true });
+      this.handleOpen();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.openDialog && !this.state.getSketchData) {
+      this.setState({ getSketchData: true });
       this.handleOpen();
     }
   }
@@ -82,6 +91,7 @@ class SketchDialog extends Component {
     window.history.pushState(null, null, this.state.oldPath);
     this.setState({
       open: false,
+      getSketchData: false,
     });
     this.props.clearErrors();
   };

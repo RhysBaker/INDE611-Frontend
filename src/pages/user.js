@@ -16,6 +16,14 @@ class user extends Component {
     sketchIdParam: null,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match !== this.props.match) {
+      const sketchId = nextProps.match.params.sketchId;
+      if (sketchId)
+        this.setState({ sketchIdParam: sketchId, openDialog: true });
+    }
+  }
+
   componentDidMount() {
     const handle = this.props.match.params.handle;
     const sketchId = this.props.match.params.sketchId;
