@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Source+Code+Pro&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.sketchWrapper {
+  margin: 5px auto 10px auto;
+  width: 100%;
+  height: auto;
+  border-radius: 20%;
+  background: #fff;
+}
+
+.userImage {
+  margin: 10px;
+  margin-top: 25px;
+  width: 100px;
+  height: 100px;
+  float: left;
+  border-radius: 25%;
+}
+
+.draw-container {
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picker {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sSlider {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sSlider label {
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 850px) {
+  .draw-container {
+    max-width: 500px;
+  }
+}

@@ -75,8 +75,12 @@ class PostSketch extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postSketch({ body: this.state.body });
+    this.props.postSketch({
+      body: this.state.body,
+      imageBody: this.state.imageUrl,
+    });
   };
+
   render() {
     const { errors } = this.state;
     const {
@@ -117,6 +121,7 @@ class PostSketch extends Component {
                 onChange={this.handleChange}
                 fullWidth
               />
+
               <Button
                 type="submit"
                 variant="contained"
@@ -150,6 +155,7 @@ const mapStateToProps = (state) => ({
   UI: state.UI,
 });
 
-export default connect(mapStateToProps, { postSketch, clearErrors })(
-  withStyles(styles)(PostSketch)
-);
+export default connect(mapStateToProps, {
+  postSketch,
+  clearErrors,
+})(withStyles(styles)(PostSketch));

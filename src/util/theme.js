@@ -49,5 +49,12 @@ export default {
       borderBottom: "1px solid rgba(0,0,0,0.1)",
       marginBottom: 20,
     },
+    sketchWrapper: {
+      margin: "0px auto 20px auto",
+      width: "100%",
+      height: "auto",
+      borderRadius: "20px",
+      background: "#fff",
+    },
   },
 };

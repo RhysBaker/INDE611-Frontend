@@ -20,8 +20,10 @@ import ChatIcon from "@material-ui/icons/Chat";
 
 //redux
 import { connect } from "react-redux";
+import AddImage from "./AddImage";
 
-const styles = {
+const styles = (theme) => ({
+  ...theme.spreadThis,
   card: {
     position: "relative",
     display: "flex",
@@ -34,7 +36,14 @@ const styles = {
     padding: 25,
     objectFit: "cover",
   },
-};
+  bodyImageUrl: {
+    maxWidth: "75%",
+  },
+  invisibleSeperator: {
+    border: "none",
+    margin: 4,
+  },
+});
 
 class Sketch extends Component {
   render() {
@@ -49,6 +58,7 @@ class Sketch extends Component {
         sketchId,
         likeCount,
         commentCount,
+        bodyImageUrl,
       },
       user: {
         authenticated,
@@ -60,12 +70,22 @@ class Sketch extends Component {
       authenticated && userHandle === handle ? (
         <DeleteSketch sketchId={sketchId} />
       ) : null;
+
+    const addImageButton = bodyImageUrl ? null : authenticated &&
+      userHandle === handle ? (
+      <AddImage sketchId={sketchId} />
+    ) : null;
+
+    let bodyImageEl = bodyImageUrl ? (
+      <img src={bodyImageUrl} alt="body" className={classes.bodyImageUrl} />
+    ) : null;
+
     return (
-      <Card className={classes.card}>
+      <Card className={(classes.card, classes.sketchWrapper)}>
         <CardMedia
           image={userImage}
           title="Profile Image"
-          className={classes.image}
+          className="userImage"
         />
         <CardContent className={classes.content}>
           <Typography
@@ -77,10 +97,13 @@ class Sketch extends Component {
             {userHandle}
           </Typography>
           {deleteButton}
+          <span>{addImageButton}</span>
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
           <Typography variant="body1">{body}</Typography>
+          {bodyImageEl}
+          <hr className={classes.invisibleSeperator} />
           <LikeButton sketchId={sketchId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">

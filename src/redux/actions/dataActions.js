@@ -1,5 +1,6 @@
 import {
   SET_SKETCHES,
+  LOADING_IMAGE_DATA,
   LOADING_DATA,
   LOADING_UI,
   LIKE_SKETCH,
@@ -127,6 +128,16 @@ export const getUserData = (userHandle) => (dispatch) => {
     .catch(() => {
       dispatch({ type: SET_SKETCHES, payload: null });
     });
+};
+
+export const handleBodyImage = (formData, sketchId) => (dispatch) => {
+  dispatch({ type: LOADING_IMAGE_DATA });
+  axios
+    .post(`/sketch/${sketchId}/image`, formData)
+    .then((res) => {
+      dispatch(getSketches());
+    })
+    .catch((err) => console.log(err));
 };
 
 //error clearing func

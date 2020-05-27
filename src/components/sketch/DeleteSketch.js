@@ -18,9 +18,10 @@ import { deleteSketch } from "../../redux/actions/dataActions";
 
 const styles = {
   deleteButton: {
-    position: "absolute",
-    right: "0",
-    marginRight: "20px",
+    position: "relative",
+    float: "right",
+    right: "5%",
+    marginRight: "10px",
     top: "10%",
   },
 };

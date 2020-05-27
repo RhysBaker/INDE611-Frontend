@@ -40,6 +40,7 @@ class user extends Component {
       })
       .catch((err) => console.log(err));
   }
+
   render() {
     const { sketches, loading } = this.props.data;
     const { sketchIdParam } = this.state;

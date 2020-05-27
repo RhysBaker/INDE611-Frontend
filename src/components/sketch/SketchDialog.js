@@ -25,9 +25,9 @@ import { getSketch, clearErrors } from "../../redux/actions/dataActions";
 const styles = (theme) => ({
   ...theme.spreadThis,
   profileImage: {
-    maxWidth: 200,
-    height: 200,
-    borderRadius: "50%",
+    maxWidth: 100,
+    height: 100,
+    borderRadius: "25%",
     objectFit: "cover",
   },
   dialogContent: {
@@ -39,14 +39,20 @@ const styles = (theme) => ({
     top: "5%",
   },
   expandButton: {
-    position: "absolute",
-    left: "90%",
+    position: "relative",
+    float: "right",
+    right: "5%",
+    marginRight: "10px",
+    top: "10%",
   },
   spinnerDiv: {
     position: "relative",
     textAlign: "center",
     marginBottom: 50,
     marginTop: 50,
+  },
+  bodyImageUrl: {
+    maxWidth: "100%",
   },
 });
 
@@ -108,9 +114,14 @@ class SketchDialog extends Component {
         userImage,
         userHandle,
         comments,
+        bodyImageUrl,
       },
       UI: { loading },
     } = this.props;
+
+    let bodyImageEl = bodyImageUrl ? (
+      <img src={bodyImageUrl} alt="body" className={classes.bodyImageUrl} />
+    ) : null;
 
     const dialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
@@ -118,10 +129,10 @@ class SketchDialog extends Component {
       </div>
     ) : (
       <Grid container spacing={2}>
-        <Grid item sm={5}>
+        <Grid item sm={3}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
-        <Grid item sm={7}>
+        <Grid item sm={9}>
           <Typography
             component={Link}
             color="primary"
@@ -137,6 +148,7 @@ class SketchDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeperator} />
           <Typography variant="body1">{body}</Typography>
+          {bodyImageEl}
           <LikeButton sketchId={sketchId} />
           <span>{likeCount}</span>
           <MyButton tip="comments">

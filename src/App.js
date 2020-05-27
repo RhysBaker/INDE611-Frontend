@@ -6,6 +6,7 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import themeFile from "./util/theme.js";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import "./css/main.css";
 
 //redux
 import { Provider } from "react-redux";
@@ -22,6 +23,9 @@ import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/user";
+import draw from "./pages/draw";
+
+axios.defaults.baseURL = "https://europe-west1-inde611.cloudfunctions.net/api";
 
 const theme = createMuiTheme(themeFile);
 
@@ -49,6 +53,7 @@ function App() {
               <Route exact path="/" component={home} />
               <AuthRoute exact path="/login" component={login} />
               <AuthRoute exact path="/signup" component={signup} />
+              <Route exact path="/draw" component={draw} />
               <Route exact path="/users/:handle" component={user} />
               <Route
                 exact
