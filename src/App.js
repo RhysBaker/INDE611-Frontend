@@ -24,6 +24,7 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/user";
 import draw from "./pages/draw";
+import faq from "./pages/faq";
 
 axios.defaults.baseURL = "https://europe-west1-inde611.cloudfunctions.net/api";
 
@@ -55,6 +56,7 @@ function App() {
               <AuthRoute exact path="/signup" component={signup} />
               <Route exact path="/draw" component={draw} />
               <Route exact path="/users/:handle" component={user} />
+              <Route exact path="/faq" component={faq} />
               <Route
                 exact
                 path="/users/:handle/sketch/:sketchId"

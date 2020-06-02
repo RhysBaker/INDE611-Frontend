@@ -18,7 +18,7 @@ export class draw extends Component {
     p5.createCanvas(p5.displayWidth / 2, p5.displayHeight / 2).parent(
       canvasParentRef
     ); // use parent to render canvas in this ref (without that p5 render this canvas outside your component)
-    p5.background("#f2f2f2");
+    p5.background("#fafafa");
   };
 
   draw = (p5) => {
@@ -83,15 +83,15 @@ export class draw extends Component {
                     "#ff9800",
                     "#ff5722",
                     "#795548",
-                    "#f2f2f2",
+                    "#fafafa",
                   ]}
                   color={this.state.strokeCol}
                   onChangeComplete={this.handleChangeComplete}
                 />
               </div>
               <div className="sSlider">
-                <label style={{ paddingRight: 20 }} for="strokeSlider">
-                  Thickness
+                <label style={{ paddingRight: "2%" }} for="strokeSlider">
+                  Line Thickness
                 </label>
                 <input type="range" id="strokeSlider" min="1" max="10" />
               </div>

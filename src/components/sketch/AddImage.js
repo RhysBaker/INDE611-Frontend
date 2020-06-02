@@ -3,7 +3,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import MyButton from "../../util/myButton";
 //icons
-import AddIcon from "@material-ui/icons/Add";
+import ImageIcon from "@material-ui/icons/Image";
 
 import { connect } from "react-redux";
 import { handleBodyImage } from "../../redux/actions/dataActions";
@@ -13,7 +13,7 @@ const styles = {
     position: "absolute",
     right: "0",
     marginRight: "20px",
-    top: "10%",
+    top: "5%",
   },
 };
 
@@ -46,7 +46,7 @@ class AddImage extends Component {
           onClick={this.handleAddPicture}
           className={classes.addImageButton}
         >
-          <AddIcon color="primary" />
+          <ImageIcon color="primary" />
         </MyButton>
       </Fragment>
     );

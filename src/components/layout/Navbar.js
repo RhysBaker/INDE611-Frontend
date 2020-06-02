@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 //Icons
 import GestureIcon from "@material-ui/icons/Gesture";
 import HomeIcon from "@material-ui/icons/Home";
+import HelpIcon from "@material-ui/icons/Help";
 
 export class Navbar extends Component {
   render() {
@@ -23,13 +24,13 @@ export class Navbar extends Component {
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              <PostSketch />
-
               <Link to="/">
                 <MyButton tip="Home">
                   <HomeIcon />
                 </MyButton>
               </Link>
+
+              <PostSketch />
 
               <Link to="/draw">
                 <MyButton tip="Draw">
@@ -38,6 +39,12 @@ export class Navbar extends Component {
               </Link>
 
               <Notifications />
+
+              <Link to="/faq">
+                <MyButton tip="Frequently asked questions">
+                  <HelpIcon />
+                </MyButton>
+              </Link>
             </Fragment>
           ) : (
             <Fragment>
@@ -52,6 +59,9 @@ export class Navbar extends Component {
               </Button>
               <Button color="inherit" component={Link} to="/signup">
                 Signup
+              </Button>
+              <Button color="inherit" component={Link} to="/faq">
+                FAQ
               </Button>
             </Fragment>
           )}
